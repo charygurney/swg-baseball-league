@@ -7,14 +7,16 @@ using BaseballLeague.Data;
 
 namespace BaseballLeague.BLL
 {
-   public  class BaseballLeagueOps
+    public class BaseballLeagueOps
     {
-        BaseballLeagueRepo _bblrepo;
+        private BaseballLeagueRepo _bblrepo;
 
-       public BaseballLeagueOps()
-       {
-           _bblrepo = new BaseballLeagueRepo();
-       }
+        public BaseballLeagueOps()
+        {
+            _bblrepo = new BaseballLeagueRepo();
+        }
+
+
 
     }
 }

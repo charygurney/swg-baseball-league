@@ -9,15 +9,17 @@ namespace BaseballLeague.Models
 {
     public class Team
     {
+        public int TeamID { get; set; }
         public string TeamName { get; set; }
         public string ManagerName { get; set; }
         public List<Player> Players { get; set; }
 
-        public  Team(string teamName, string managerName, List<Player> players)
-        {
-            this.TeamName = teamName;
-            this.ManagerName = managerName;
-            this.Players = players;
-        }
+        //public Team(int teamID, string teamName, string managerName, List<Player> players)
+        //{
+        //    this.TeamID = teamID;
+        //    this.TeamName = teamName;
+        //    this.ManagerName = managerName;
+        //    this.Players = players;
+        //}
     }
 }

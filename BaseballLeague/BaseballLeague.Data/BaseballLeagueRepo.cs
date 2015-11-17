@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -12,20 +13,24 @@ namespace BaseballLeague.Data
 {
     public class BaseballLeagueRepo
     {
-        private SqlConnection _cn = new SqlConnection(Settings.ConnectionString);
+        private SqlConnection _cn;
 
 
         public List<Team> GetAllTeams()
         {
-            return _cn.Query<Team>("Select * From Teams").ToList();
+            _cn = new SqlConnection(Settings.ConnectionString);
+
+            return _cn.Query<Team>("GetAllTeams", commandType: CommandType.StoredProcedure).ToList();
         }
 
-        public List<Player> GetAllPlayersOnATeam(int id)
+        public List<Player> GetAllPlayersOnATeam(int teamID)
         {
-            var p = new DynamicParameters();
-            p.Add("TeamID", id);
+            _cn = new SqlConnection(Settings.ConnectionString);
 
-            return _cn.Query<Player>("Select * From Teams t on Players p inner join t.TeamID = p.TeamID where t.TeamID = @TeamID", p).ToList();
+            var p = new DynamicParameters();
+            p.Add("TeamID", teamID);
+
+            return _cn.Query<Player>("GetAllPlayersOnATeam", p, commandType: CommandType.StoredProcedure).ToList();
         }
 
     }
