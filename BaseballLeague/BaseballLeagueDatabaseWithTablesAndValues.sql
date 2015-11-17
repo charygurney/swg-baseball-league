@@ -1,6 +1,9 @@
 use master
 go
 
+drop database BaseballLeague
+go
+
 create database BaseballLeague
 go
 
@@ -112,5 +115,61 @@ insert into Players(FirstName, LastName, JerseyNumber, YearsPlayed, BattingAvg, 
 		('Annie', 'Clark', 54, 2, .288, null, 13, 6)
 go
 
+-------------------------------------------------------------------------------------------------------------
+-----------------------
+-- STORED PROCEDURES --
+-----------------------
 
+USE BaseballLeague
+GO
 
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE procedure GetAllTeams
+as
+begin
+	select *
+	from Teams
+end
+GO
+-----------------------
+
+USE BaseballLeague
+GO
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE procedure GetAllPlayersOnATeam
+	@TeamID int
+AS
+BEGIN
+
+SET NOCOUNT ON;
+
+select pl.PlayerID,
+		pl.FirstName,
+		pl.LastName,
+		pl.JerseyNumber,
+		pl.YearsPlayed,
+		pl.BattingAvg,
+		pl.EarnedRunAvg,
+		pl.TeamID,
+		te.TeamName,
+		pl.PositionID,
+		po.PositionName 
+	from players pl
+		inner join teams te
+			on pl.TeamID = te.TeamID
+		inner join Positions po
+			on pl.PositionID = po.PositionID
+	where te.TeamID = @TeamID
+END
+GO
+
+----------------------------------
