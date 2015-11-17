@@ -46,7 +46,13 @@ insert into Teams (TeamName, ManagerName)
 		('Minnesota Twins', 'Patti Smith'),
 		('Cleveland Indians', 'Aaron Potter'),
 		('Chicago White Sox', 'Sherman Martin'),
-		('Detroit Tigers', 'Beth Wagner')
+		('Detroit Tigers', 'Beth Wagner'),
+
+		('Texas Rangers','Ben Reynolds'),
+		('Houston Astros','Maria Parker'),
+		('Los Angeles Angels','Lew Wolf'),
+		('Seattle Mariners','Doug Wright'),
+		('Oakland Athletics','Jack Stevenson')
 go
 
 insert into Positions (PositionName)
@@ -85,7 +91,25 @@ insert into Players(FirstName, LastName, JerseyNumber, YearsPlayed, BattingAvg, 
 		('Rick', 'Wise', 36, 15, .312, null, 9, 5),
 		('Ben', 'King', 97, 5, .321, null, 1, 6),
 		('Luke', 'Green', 10, 0, .189, null, 2, 7),
-		('Spencer', 'Prince', 1, 18, .256, null, 3, 8)
+		('Spencer', 'Prince', 1, 18, .256, null, 3, 8),
+		('Tom', 'Hall', 43, 19, null, 3.08, 11, 1),
+		('Matt', 'Philips', 27, 18, null, 2.14, 12, 2),
+		('George', 'Mitchell', 20, 17, null, 1.99, 13, 3),
+		('Scott', 'Allen', 39, 16, .218, null, 14, 4),
+		('Lori', 'Anderson', 66, 15, .299, null, 15, 5),
+		('Harry', 'Brown', 87, 14, .317, null, 1, 6),
+		('Pat', 'Lee', 14, 13, .225, null, 2, 7),
+		('Martin', 'Morris', 8, 12, .263, null, 3, 8),
+		('Shawn', 'Smith', 16, 11, .239, null, 4, 9),
+		('Jeremy', 'Rogers', 44, 10, .336, null, 5, 10),
+		('Ruby', 'Diaz', 43, 9, .250, null, 6, 11),
+		('Nick', 'Garcia', 66, 8, .300, null, 7, 12),
+		('Craig', 'Ross', 82, 7, null, 2.61, 8, 1),
+		('Virginia', 'Allen', 7, 6, null, 3.29, 9, 2),
+		('Ralph', 'Allen', 3, 5, null, 2.22, 10, 3),
+		('Bill', 'Dee', 28, 4, .340, null, 11, 4),
+		('Eric', 'Hill', 74, 3, .322, null, 12, 5),
+		('Annie', 'Clark', 54, 2, .288, null, 13, 6)
 go
 
 
