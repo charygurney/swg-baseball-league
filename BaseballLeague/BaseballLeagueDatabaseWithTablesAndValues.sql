@@ -7,8 +7,15 @@ go
 use BaseballLeague
 go
 
+create table Leagues (
+	LeagueID int identity(1,1) primary key,
+	LeagueName nvarchar(50) not null
+)
+go
+
 create table Teams (
 	TeamID int identity(1,1) primary key,
+	LeagueID int foreign key references Leagues (LeagueID),
 	TeamName nvarchar(50) not null,
 	ManagerName nvarchar(100) not null,
 )
@@ -22,14 +29,15 @@ go
 
 create table Players (
 	PlayerID int identity(1,1) primary key,
+	PositionID int foreign key references Positions(PositionID) not null,
+	TeamID int foreign key references Teams(TeamID) not null,
 	FirstName nvarchar(50) not null,
 	LastName nvarchar(50) not null,
 	JerseyNumber int not null,
 	YearsPlayed int not null,
 	BattingAvg decimal(3,3) null,
-	EarnedRunAvg decimal(5, 2) null,
-	TeamID int references Teams(TeamID) not null,
-	PositionID int references Positions(PositionID) not null
+	EarnedRunAvg decimal(5, 2) null
+	
 )
 go
 
