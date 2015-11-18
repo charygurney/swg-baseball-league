@@ -18,6 +18,7 @@
                 <th>Years Player</th>
                 <th>Batting Avg</th>
                 <th>Earned Run Avg</th>
+                <th>Remove A Player</th>
             </tr>
             @foreach (var player in Model.Players)
             {
@@ -29,6 +30,7 @@
                     <td>@player.YearsPlayed</td>
                     <td>@player.BattingAvg</td>
                     <td>@player.EarnedRunAvg</td>
+                    <td>@Html.ActionLink("Delete", "DeleteAPlayer", "Home", new {id = player.PlayerID}, null)</td>
                 </tr>
             }
         </table>

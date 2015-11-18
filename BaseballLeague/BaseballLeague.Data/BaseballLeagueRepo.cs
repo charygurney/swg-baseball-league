@@ -61,6 +61,14 @@ namespace BaseballLeague.Data
 
         // Delete a player
 
+        public void DeleteAPlayer(int id)
+        {
+            var p = new DynamicParameters();
+            p.Add("PlayerID", id);
+
+            _cn.Execute("DeletePlayer", p, commandType: CommandType.StoredProcedure);
+        }
+
         // Trade a player (delete old team ID, create new team ID in its place)
 
     }

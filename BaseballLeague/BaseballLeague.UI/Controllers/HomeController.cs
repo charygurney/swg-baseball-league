@@ -42,5 +42,14 @@ namespace BaseballLeague.UI.Controllers
 
             return View(_team);
         }
+
+        public ActionResult DeleteAPlayer(int id)
+        {
+            _ops = new BaseballLeagueOps();
+
+            _ops.DeleteAPlayerFromRepo(id);
+
+            return RedirectToAction("GetAllTeams");
+        }
     }
 }
