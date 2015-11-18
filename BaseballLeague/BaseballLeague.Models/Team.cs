@@ -14,6 +14,11 @@ namespace BaseballLeague.Models
         public string ManagerName { get; set; }
         public List<Player> Players { get; set; }
 
+        public Team()
+        {
+            Players = new List<Player>();
+        }
+
         //public Team(int teamID, string teamName, string managerName, List<Player> players)
         //{
         //    this.TeamID = teamID;

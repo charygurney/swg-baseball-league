@@ -16,10 +16,10 @@ namespace BaseballLeague.Models
         public int YearsPlayed { get; set; }
         public decimal? BattingAvg { get; set; }
         public decimal? EarnedRunAvg { get; set; }
-        public string Position { get; set; }
+        public string PositionName { get; set; }
         public string TeamName { get; set; }
 
-        //public Player(int playerID, string firstName, string lastName, int jerseyNumber, int yearsPlayed, decimal battingAvg, decimal earnedRunAvg, string position, string teamName)
+        //public Player(int playerID, string firstName, string lastName, int jerseyNumber, int yearsPlayed, decimal battingAvg, decimal earnedRunAvg, string positionName, string teamName)
         //{
         //    this.PlayerID = playerID;
         //    this.FirstName = firstName;
@@ -28,7 +28,7 @@ namespace BaseballLeague.Models
         //    this.YearsPlayed = yearsPlayed;
         //    this.BattingAvg = battingAvg;
         //    this.EarnedRunAvg = earnedRunAvg;
-        //    this.Position = position;
+        //    this.PositionName = positionName;
         //    this.TeamName = teamName;
         //}
     }

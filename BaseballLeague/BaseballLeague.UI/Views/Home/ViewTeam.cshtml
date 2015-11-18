@@ -1,0 +1,37 @@
+﻿@model BaseballLeague.Models.Team
+@{
+    ViewBag.Title = "ViewTeam";
+}
+
+<p>@Html.ActionLink("Return to Teams", "GetAllTeams", "Home")</p>
+
+<h2>@Model.TeamName</h2>
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-striped">
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Position</th>
+                <th>Jersey Number</th>
+                <th>Years Player</th>
+                <th>Batting Avg</th>
+                <th>Earned Run Avg</th>
+            </tr>
+            @foreach (var player in Model.Players)
+            {
+                <tr>
+                    <td>@player.FirstName</td>
+                    <td>@player.LastName</td>
+                    <td>@player.PositionName</td>
+                    <td>@player.JerseyNumber</td>
+                    <td>@player.YearsPlayed</td>
+                    <td>@player.BattingAvg</td>
+                    <td>@player.EarnedRunAvg</td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+

@@ -11,6 +11,7 @@ namespace BaseballLeague.UI.Controllers
     public class HomeController : Controller
     {
         private League _league;
+        private Team _team;
         private BaseballLeagueOps _ops;
 
         // GET: Home
@@ -27,6 +28,19 @@ namespace BaseballLeague.UI.Controllers
             _league.Teams = _ops.GetTeamsFromRepo();
 
             return View(_league);
+        }
+
+        public ActionResult ViewTeam(int id)
+        {
+            _team = new Team();
+            _ops = new BaseballLeagueOps();
+
+
+            _ops.GetTeamsFromRepo();
+            _team.Players = _ops.GetPlayersOnTeamFromRepo(id);
+            _team.TeamName = _team.Players[0].TeamName;
+
+            return View(_team);
         }
     }
 }

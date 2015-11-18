@@ -18,7 +18,7 @@
             @foreach (var team in Model.Teams)
             {
                 <tr>
-                    <td>@team.TeamName</td>
+                    <td><a href="/Home/ViewTeam/@team.TeamID">@team.TeamName</a></td>
                     <td>@team.ManagerName</td>
                 </tr>
             }
