@@ -181,3 +181,25 @@ END
 GO
 
 ----------------------------------
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE CreateTeam 
+
+	@TeamName nvarchar(50), 
+	@ManagerName nvarchar(100),
+	@LeagueID int,
+	@TeamID int output 
+AS
+BEGIN
+	
+	SET NOCOUNT ON;
+
+	insert into Teams (LeagueID, TeamName, ManagerName)
+	values(@LeagueID, @TeamName, @ManagerName)
+	set @TeamID = Scope_Identity()
+END
+GO

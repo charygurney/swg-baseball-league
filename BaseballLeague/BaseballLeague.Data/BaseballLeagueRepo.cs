@@ -35,6 +35,18 @@ namespace BaseballLeague.Data
 
         // Create a team
 
+        public int Team(string teamName, string managerName, int leagueId)
+        {
+            var p = new DynamicParameters();
+            p.Add("TeamName", teamName);
+            p.Add("ManagerName", managerName);
+            p.Add("LeagueID", leagueId);
+            p.Add("TeamID", dbType: DbType.Int32, direction: ParameterDirection.Output);
+
+            _cn.Execute("CreateTeam", p, commandType: CommandType.StoredProcedure);
+            return p.Get<int>("TeamID");
+        }
+
         // Create a player
 
         // Retrieve a team
