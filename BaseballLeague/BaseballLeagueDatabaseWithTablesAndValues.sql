@@ -203,3 +203,78 @@ BEGIN
 	set @TeamID = Scope_Identity()
 END
 GO
+
+--ADD NEW PLAYER
+
+Go
+Create procedure [dbo].[AddNewPlayer](
+	@PositionID int,
+	@TeamID int,
+	@FirstName nvarchar(50),
+	@LastName nvarchar(50),
+	@JerseyNumber int,
+	@YearsPlayed int,
+	@BattingAverage decimal(3,3),
+	@EarnedRunAvg decimal(5,2),
+	@PlayerID int output
+	)
+	as
+begin
+	insert into Players (PositionID, TeamID, FirstName, LastName, JerseyNumber, YearsPlayed, BattingAvg, EarnedRunAvg)
+	values (@PositionID, @TeamID, @FirstName, @LastName, @JerseyNumber, @YearsPlayed, @BattingAverage, @EarnedRunAvg)
+
+	set @PlayerID = SCOPE_IDENTITY();
+end
+
+--TRADE PLAYER
+
+go
+create procedure [dbo].[TradePlayer](
+	@PlayerID int,
+	@NewTeamID int
+	)
+	as
+begin
+	update players
+	set TeamID = @NewTeamID
+	where PlayerID = @PlayerID
+end
+
+--DELETE PLAYER
+
+go
+create procedure [dbo].[DeletePlayer](
+	@PlayerID int
+	)
+	as
+begin
+	delete from players
+	where PlayerID = @PlayerID
+end
+
+--GET TEAM ID
+
+go 
+create procedure [dbo].[GetTeamID](
+	@TeamName nvarchar(50)
+	)
+	as
+begin
+	select TeamID
+	from Teams
+	where TeamName = @TeamName
+end
+
+--GET POSITION ID
+
+go
+create procedure [dbo].[GetPositionID](
+	@PositionName nvarchar(50)
+	)
+	as
+begin
+	select PositionID
+	from Positions
+	where PositionName = @PositionName
+end
+
