@@ -10,15 +10,8 @@ go
 use BaseballLeague
 go
 
-create table Leagues (
-	LeagueID int identity(1,1) primary key,
-	LeagueName nvarchar(50) not null
-)
-go
-
 create table Teams (
 	TeamID int identity(1,1) primary key,
-	LeagueID int foreign key references Leagues (LeagueID),
 	TeamName nvarchar(50) not null,
 	ManagerName nvarchar(100) not null,
 )
@@ -32,15 +25,14 @@ go
 
 create table Players (
 	PlayerID int identity(1,1) primary key,
-	PositionID int foreign key references Positions(PositionID) not null,
-	TeamID int foreign key references Teams(TeamID) not null,
 	FirstName nvarchar(50) not null,
 	LastName nvarchar(50) not null,
 	JerseyNumber int not null,
 	YearsPlayed int not null,
 	BattingAvg decimal(3,3) null,
-	EarnedRunAvg decimal(5, 2) null
-	
+	EarnedRunAvg decimal(5, 2) null,
+	TeamID int references Teams(TeamID) not null,
+	PositionID int references Positions(PositionID) not null
 )
 go
 
@@ -182,99 +174,45 @@ GO
 
 ----------------------------------
 
+USE [BaseballLeague]
+GO
+/****** Object:  StoredProcedure [dbo].[NewJerseyNumber]    Script Date: 11/18/2015 4:07:59 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-
-CREATE PROCEDURE CreateTeam 
-
-	@TeamName nvarchar(50), 
-	@ManagerName nvarchar(100),
-	@LeagueID int,
-	@TeamID int output 
-AS
-BEGIN
-	
-	SET NOCOUNT ON;
-
-	insert into Teams (LeagueID, TeamName, ManagerName)
-	values(@LeagueID, @TeamName, @ManagerName)
-	set @TeamID = Scope_Identity()
-END
-GO
-
---ADD NEW PLAYER
-
-Go
-Create procedure [dbo].[AddNewPlayer](
-	@PositionID int,
-	@TeamID int,
-	@FirstName nvarchar(50),
-	@LastName nvarchar(50),
-	@JerseyNumber int,
-	@YearsPlayed int,
-	@BattingAverage decimal(3,3),
-	@EarnedRunAvg decimal(5,2),
-	@PlayerID int output
+ALTER procedure [dbo].[NewJerseyNumber](
+	@PlayerID int,
+	@TeamID int
 	)
 	as
 begin
-	insert into Players (PositionID, TeamID, FirstName, LastName, JerseyNumber, YearsPlayed, BattingAvg, EarnedRunAvg)
-	values (@PositionID, @TeamID, @FirstName, @LastName, @JerseyNumber, @YearsPlayed, @BattingAverage, @EarnedRunAvg)
-
-	set @PlayerID = SCOPE_IDENTITY();
+	select max(Players.JerseyNumber) + 1 
+	from Teams inner join Players 
+		on Teams.TeamID = Players.TeamID 
+	where Teams.TeamID = @TeamID
 end
+GO
 
---TRADE PLAYER
+---------------------------------------
 
-go
-create procedure [dbo].[TradePlayer](
+USE [BaseballLeague]
+GO
+/****** Object:  StoredProcedure [dbo].[TradePlayer]    Script Date: 11/18/2015 4:08:45 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER procedure [dbo].[TradePlayer](
 	@PlayerID int,
-	@NewTeamID int
+	@NewTeamID int,
+	@NewJerseyNumber int
 	)
 	as
 begin
 	update players
-	set TeamID = @NewTeamID
+	set TeamID = @NewTeamID, 
+		JerseyNumber = @NewJerseyNumber
 	where PlayerID = @PlayerID
 end
-
---DELETE PLAYER
-
-go
-create procedure [dbo].[DeletePlayer](
-	@PlayerID int
-	)
-	as
-begin
-	delete from players
-	where PlayerID = @PlayerID
-end
-
---GET TEAM ID
-
-go 
-create procedure [dbo].[GetTeamID](
-	@TeamName nvarchar(50)
-	)
-	as
-begin
-	select TeamID
-	from Teams
-	where TeamName = @TeamName
-end
-
---GET POSITION ID
-
-go
-create procedure [dbo].[GetPositionID](
-	@PositionName nvarchar(50)
-	)
-	as
-begin
-	select PositionID
-	from Positions
-	where PositionName = @PositionName
-end
-
+GO
