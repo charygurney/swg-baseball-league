@@ -1,0 +1,27 @@
+﻿@model BaseballLeague.Models.League
+
+@{
+    ViewBag.Title = "GetAllTeams";
+}
+
+<p>@Html.ActionLink("Return to Home", "Index", "Home")</p>
+
+<h2>@Model.LeagueName Teams</h2>
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-striped">
+            <tr>
+                <th>Team</th>
+                <th>Manager</th>
+            </tr>
+            @foreach (var team in Model.Teams)
+            {
+                <tr>
+                    <td>@team.TeamName</td>
+                    <td>@team.ManagerName</td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
