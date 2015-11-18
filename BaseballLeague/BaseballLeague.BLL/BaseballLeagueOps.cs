@@ -32,5 +32,13 @@ namespace BaseballLeague.BLL
             _bblrepo.DeleteAPlayer(id);
         }
 
+        public void TradeAPlayerFromRepo(int id, int newTeamID)
+        {
+            // Logic to calculate new jersey number
+            int newJerseyNumber = _bblrepo.JerseyNumbersOnATeam(id, newTeamID);
+
+            _bblrepo.TradeAPlayer(id, newTeamID, newJerseyNumber);
+        }
+
     }
 }

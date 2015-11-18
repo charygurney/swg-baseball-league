@@ -57,10 +57,6 @@ namespace BaseballLeague.Data
 
         // Update a player
 
-        // Delete a team
-
-        // Delete a player
-
         public void DeleteAPlayer(int id)
         {
             var p = new DynamicParameters();
@@ -69,7 +65,25 @@ namespace BaseballLeague.Data
             _cn.Execute("DeletePlayer", p, commandType: CommandType.StoredProcedure);
         }
 
-        // Trade a player (delete old team ID, create new team ID in its place)
+        // Trade a player (create new team ID in its place)
+        public void TradeAPlayer(int id, int newTeamID, int newJerseyNumber)
+        {
+            var p = new DynamicParameters();
+            p.Add("PlayerID", id);
+            p.Add("TeamID", newTeamID);
+            p.Add("JerseyNumber", newJerseyNumber);
+
+            _cn.Execute("TradePlayer", p, commandType: CommandType.StoredProcedure);
+        }
+
+        public int JerseyNumbersOnATeam(int id, int newTeamID)
+        {
+            var p = new DynamicParameters();
+            p.Add("PlayerID", id);
+            p.Add("TeamID", newTeamID);
+
+            return _cn.Query<int>("NewJerseyNumber", p, commandType: CommandType.StoredProcedure).FirstOrDefault();
+        } 
 
     }
 
