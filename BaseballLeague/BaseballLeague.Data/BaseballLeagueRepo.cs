@@ -17,7 +17,7 @@ namespace BaseballLeague.Data
 
         public BaseballLeagueRepo()
         {
-            _cn = new SqlConnection();
+            _cn = new SqlConnection(Settings.ConnectionString);
         }
 
         public List<Team> GetAllTeams()
