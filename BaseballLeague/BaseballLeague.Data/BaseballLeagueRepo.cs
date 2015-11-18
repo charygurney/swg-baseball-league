@@ -15,23 +15,41 @@ namespace BaseballLeague.Data
     {
         private SqlConnection _cn;
 
+        public BaseballLeagueRepo()
+        {
+            _cn = new SqlConnection();
+        }
 
         public List<Team> GetAllTeams()
         {
-            _cn = new SqlConnection(Settings.ConnectionString);
-
             return _cn.Query<Team>("GetAllTeams", commandType: CommandType.StoredProcedure).ToList();
         }
 
         public List<Player> GetAllPlayersOnATeam(int teamID)
         {
-            _cn = new SqlConnection(Settings.ConnectionString);
-
             var p = new DynamicParameters();
             p.Add("TeamID", teamID);
 
             return _cn.Query<Player>("GetAllPlayersOnATeam", p, commandType: CommandType.StoredProcedure).ToList();
         }
+
+        // Create a team
+
+        // Create a player
+
+        // Retrieve a team
+
+        // Retrieve a player
+
+        // Update a team
+
+        // Update a player
+
+        // Delete a team
+
+        // Delete a player
+
+        // Trade a player (delete old team ID, create new team ID in its place)
 
     }
 

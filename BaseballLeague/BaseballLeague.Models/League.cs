@@ -11,10 +11,10 @@ namespace BaseballLeague.Models
         public string LeagueName { get; set; }
         public List<Team> Teams { get; set; }
 
-        //public League(List<Team> teams)
-        //{
-        //    this.LeagueName = "MLB";
-        //    this.Teams = teams;
-        //}
+        public League()
+        {
+            LeagueName = "MLB";
+            Teams = new List<Team>();
+        }
     }
 }

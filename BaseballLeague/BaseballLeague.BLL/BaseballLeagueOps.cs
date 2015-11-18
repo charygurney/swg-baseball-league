@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BaseballLeague.Data;
+using BaseballLeague.Models;
 
 namespace BaseballLeague.BLL
 {
@@ -16,7 +17,15 @@ namespace BaseballLeague.BLL
             _bblrepo = new BaseballLeagueRepo();
         }
 
+        public List<Team> GetTeamsFromRepo()
+        {
+            return _bblrepo.GetAllTeams();
+        }
 
+        public List<Player> GetPlayersOnTeamFromRepo(int teamID)
+        {
+            return _bblrepo.GetAllPlayersOnATeam(teamID);
+        }  
 
     }
 }
