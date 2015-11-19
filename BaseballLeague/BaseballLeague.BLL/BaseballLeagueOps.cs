@@ -50,31 +50,10 @@ namespace BaseballLeague.BLL
 
         }
 
-        //public int TradeAPlayerFromRepo(int id, int newTeamID)
-        //{
-            
-        //    int newJerseyNumber = _bblrepo.JerseyNumbersOnATeam(id, newTeamID);
-        //    List<Player> players = _bblrepo.GetAllPlayersOnATeam(newTeamID);
-        //    Response response = new Response();
-        //    foreach (var player in players)
-        //    {
-        //        if (newJerseyNumber == player.JerseyNumber)
-        //        {
-        //            response.Success = false;
-        //            response.Message = "This jersey number is already assighned to a player!";
-                    
-        //        }
-        //        else
-        //        {
-        //            response.Success = true;
-        //            return newJerseyNumber;
-        //        }
-        //    }
-
-        //    _bblrepo.TradeAPlayer(id, newTeamID, newJerseyNumber);
-
-            
-        //}
+        public void CreateATeamFromRepo(string teamName, string managerName)
+        {
+             _bblrepo.CreateATeam(teamName, managerName, 1);
+        }
 
     }
 }

@@ -73,5 +73,20 @@ namespace BaseballLeague.UI.Controllers
 
             return RedirectToAction("GetAllTeams");
         }
+
+        public ActionResult CreateATeam()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CreateATeamPost(Team team)
+        {
+            _ops = new BaseballLeagueOps();
+
+            _ops.CreateATeamFromRepo(team.TeamName, team.ManagerName);
+
+            return RedirectToAction("GetAllTeams");
+        }
     }
 }

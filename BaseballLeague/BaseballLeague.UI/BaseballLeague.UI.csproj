@@ -137,6 +137,7 @@
     <Content Include="Views\Home\GetAllTeams.cshtml" />
     <Content Include="Views\Home\ViewTeam.cshtml" />
     <Content Include="Views\Home\TradeAPlayer.cshtml" />
+    <Content Include="Views\Home\CreateATeam.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
