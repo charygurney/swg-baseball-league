@@ -110,6 +110,23 @@ namespace BaseballLeague.Data
             _cn.Execute("AddNewPlayer", p, commandType: CommandType.StoredProcedure);
         }
 
+        public int GetTeamID(string teamName)
+        {
+            var p = new DynamicParameters();
+            p.Add("TeamName", teamName);
+
+            return _cn.Query<int>("GetTeamID", p, commandType: CommandType.StoredProcedure).FirstOrDefault();
+        }
+
+        public int GetPositionID(string positionName)
+        {
+            var p = new DynamicParameters();
+            p.Add("PositionName", positionName);
+
+            return _cn.Query<int>("GetPositionID", p, commandType: CommandType.StoredProcedure).FirstOrDefault();
+        }
+
+
     }
 
 
