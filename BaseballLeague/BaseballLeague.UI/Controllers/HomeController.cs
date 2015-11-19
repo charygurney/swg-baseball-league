@@ -39,7 +39,7 @@ namespace BaseballLeague.UI.Controllers
 
             _ops.GetTeamsFromRepo();
             _team.Players = _ops.GetPlayersOnTeamFromRepo(id);
-            _team.TeamName = _team.Players[0].TeamName;
+            _team.TeamName = _ops.RetrieveATeamFromRepo(id).TeamName;
 
             return View(_team);
         }
