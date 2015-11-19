@@ -53,10 +53,25 @@ namespace BaseballLeague.UI.Controllers
             return RedirectToAction("GetAllTeams");
         }
 
-        public ActionResult TradeAPlayer(int id)
+        public ActionResult TradeAPlayer(int id, int teamID)
         {
+            _ops = new BaseballLeagueOps();
             PlayerToTradeVM playerToTradeVM = new PlayerToTradeVM();
-            playerToTradeVM.player = new Player();
+            playerToTradeVM.player = _ops.RetrieveAPlayerFromRepo(id);
+            playerToTradeVM.team = _ops.RetrieveATeamFromRepo(teamID);
+            playerToTradeVM.CreateTeamsList(_ops.GetTeamsFromRepo());
+
+            return View(playerToTradeVM);
+        }
+
+        [HttpPost]
+        public ActionResult TradeAPlayerPost(PlayerToTradeVM playerToTradeVM)
+        {
+            _ops = new BaseballLeagueOps();
+
+            _ops.TradeAPlayerFromRepo(playerToTradeVM.player.PlayerID, playerToTradeVM.team.TeamID);
+
+            return RedirectToAction("GetAllTeams");
         }
     }
 }

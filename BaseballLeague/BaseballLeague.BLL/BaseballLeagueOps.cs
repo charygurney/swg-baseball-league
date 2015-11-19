@@ -27,6 +27,16 @@ namespace BaseballLeague.BLL
             return _bblrepo.GetAllPlayersOnATeam(teamID);
         }
 
+        public Team RetrieveATeamFromRepo(int teamID)
+        {
+            return _bblrepo.RetrieveATeam(teamID);
+        }
+
+        public Player RetrieveAPlayerFromRepo(int playerID)
+        {
+            return _bblrepo.RetrieveAPlayer(playerID);
+        }
+
         public void DeleteAPlayerFromRepo(int id)
         {
             _bblrepo.DeleteAPlayer(id);
