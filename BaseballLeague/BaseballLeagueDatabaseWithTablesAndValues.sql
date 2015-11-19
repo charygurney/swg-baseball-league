@@ -181,7 +181,7 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-ALTER procedure [dbo].[NewJerseyNumber](
+create procedure [dbo].[NewJerseyNumber](
 	@PlayerID int,
 	@TeamID int
 	)
@@ -203,7 +203,7 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-ALTER procedure [dbo].[TradePlayer](
+create procedure [dbo].[TradePlayer](
 	@PlayerID int,
 	@NewTeamID int,
 	@NewJerseyNumber int
