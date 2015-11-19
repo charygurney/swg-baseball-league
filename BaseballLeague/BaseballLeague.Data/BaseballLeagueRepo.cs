@@ -33,9 +33,7 @@ namespace BaseballLeague.Data
             return _cn.Query<Player>("GetAllPlayersOnATeam", p, commandType: CommandType.StoredProcedure).ToList();
         }
 
-        // Create a team
-
-        public int Team(string teamName, string managerName, int leagueId)
+        public int CreateATeam(string teamName, string managerName, int leagueId)
         {
             var p = new DynamicParameters();
             p.Add("TeamName", teamName);
@@ -49,7 +47,6 @@ namespace BaseballLeague.Data
 
         // Create a player
 
-        // Retrieve a team
         public Team RetrieveATeam(int id)
         {
             var p = new DynamicParameters();
@@ -58,8 +55,6 @@ namespace BaseballLeague.Data
             return _cn.Query<Team>("RetrieveTeam", p, commandType: CommandType.StoredProcedure).FirstOrDefault();
         }
 
-
-        // Retrieve a player
         public Player RetrieveAPlayer(int id)
         {
             var p = new DynamicParameters();
@@ -80,7 +75,6 @@ namespace BaseballLeague.Data
             _cn.Execute("DeletePlayer", p, commandType: CommandType.StoredProcedure);
         }
 
-        // Trade a player (create new team ID in its place)
         public void TradeAPlayer(int id, int newTeamID, int newJerseyNumber)
         {
             var p = new DynamicParameters();
