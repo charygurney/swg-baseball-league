@@ -181,6 +181,7 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+
 CREATE procedure [dbo].[NewJerseyNumber](
 	@PlayerID int,
 	@TeamID int
@@ -203,6 +204,7 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+
 CREATE procedure [dbo].[TradePlayer](
 	@PlayerID int,
 	@TeamID int,
@@ -279,7 +281,7 @@ GO
 
 USE [BaseballLeague]
 GO
-/****** Object:  StoredProcedure [dbo].[DeletePlayer]    Script Date: 11/19/2015 9:33:36 AM ******/
+
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -298,7 +300,7 @@ GO
 
 USE [BaseballLeague]
 GO
-/****** Object:  StoredProcedure [dbo].[GetTeamID]    Script Date: 11/19/2015 9:34:38 AM ******/
+
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -318,7 +320,7 @@ GO
 
 USE [BaseballLeague]
 GO
-/****** Object:  StoredProcedure [dbo].[GetPositionID]    Script Date: 11/19/2015 9:35:10 AM ******/
+
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -338,7 +340,7 @@ GO
 
 USE [BaseballLeague]
 GO
-/****** Object:  StoredProcedure [dbo].[AddNewPlayer]    Script Date: 11/19/2015 9:36:46 AM ******/
+
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -367,7 +369,7 @@ GO
 
 USE [BaseballLeague]
 GO
-/****** Object:  StoredProcedure [dbo].[CreateTeam]    Script Date: 11/19/2015 9:37:10 AM ******/
+
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON

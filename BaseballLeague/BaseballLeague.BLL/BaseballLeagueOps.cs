@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 using BaseballLeague.Data;
@@ -44,11 +45,36 @@ namespace BaseballLeague.BLL
 
         public void TradeAPlayerFromRepo(int id, int newTeamID)
         {
-            
             int newJerseyNumber = _bblrepo.JerseyNumbersOnATeam(id, newTeamID);
-
             _bblrepo.TradeAPlayer(id, newTeamID, newJerseyNumber);
+
         }
+
+        //public int TradeAPlayerFromRepo(int id, int newTeamID)
+        //{
+            
+        //    int newJerseyNumber = _bblrepo.JerseyNumbersOnATeam(id, newTeamID);
+        //    List<Player> players = _bblrepo.GetAllPlayersOnATeam(newTeamID);
+        //    Response response = new Response();
+        //    foreach (var player in players)
+        //    {
+        //        if (newJerseyNumber == player.JerseyNumber)
+        //        {
+        //            response.Success = false;
+        //            response.Message = "This jersey number is already assighned to a player!";
+                    
+        //        }
+        //        else
+        //        {
+        //            response.Success = true;
+        //            return newJerseyNumber;
+        //        }
+        //    }
+
+        //    _bblrepo.TradeAPlayer(id, newTeamID, newJerseyNumber);
+
+            
+        //}
 
     }
 }
