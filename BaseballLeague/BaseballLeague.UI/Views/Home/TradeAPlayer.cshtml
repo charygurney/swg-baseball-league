@@ -12,16 +12,16 @@
     <div class="col-md-6">
         @using (Html.BeginForm("TradeAPlayerPost", "Home", FormMethod.Post))
         {
-            <tr>
+            <p>
                 @Html.Hidden("player.PlayerID", Model.player.PlayerID)
-                Name: @Model.player.FirstName + @Model.player.LastName
-            </tr>
-            <tr>
-                Current Team: @Model.team.TeamName
-            </tr>
-            <tr>
+                Name: @Model.player.FirstName @Model.player.LastName
+            </p>
+            <p>
+                Current Team: @Model.player.TeamName
+            </p>
+            <p>
                 New Team: @Html.DropDownList("team.TeamID", Model.teams)
-            </tr>
+            </p>
 
             <br/>
             <br/>
