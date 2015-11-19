@@ -181,7 +181,7 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-ALTER procedure [dbo].[NewJerseyNumber](
+CREATE procedure [dbo].[NewJerseyNumber](
 	@PlayerID int,
 	@TeamID int
 	)
@@ -203,16 +203,16 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-ALTER procedure [dbo].[TradePlayer](
+CREATE procedure [dbo].[TradePlayer](
 	@PlayerID int,
-	@NewTeamID int,
-	@NewJerseyNumber int
+	@TeamID int,
+	@JerseyNumber int
 	)
 	as
 begin
 	update players
-	set TeamID = @NewTeamID, 
-		JerseyNumber = @NewJerseyNumber
+	set TeamID = @TeamID, 
+		JerseyNumber = @JerseyNumber
 	where PlayerID = @PlayerID
 end
 GO
@@ -272,5 +272,120 @@ BEGIN
 	select *
 	from Teams
 	where TeamID = @TeamID
+END
+GO
+
+--------------------------------------------
+
+USE [BaseballLeague]
+GO
+/****** Object:  StoredProcedure [dbo].[DeletePlayer]    Script Date: 11/19/2015 9:33:36 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE procedure [dbo].[DeletePlayer](
+	@PlayerID int
+	)
+	as
+begin
+	delete from players
+	where PlayerID = @PlayerID
+end
+GO
+
+----------------------------------------------
+
+USE [BaseballLeague]
+GO
+/****** Object:  StoredProcedure [dbo].[GetTeamID]    Script Date: 11/19/2015 9:34:38 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE procedure [dbo].[GetTeamID](
+	@TeamName nvarchar(50)
+	)
+	as
+begin
+	select TeamID
+	from Teams
+	where TeamName = @TeamName
+end
+GO
+
+------------------------------------------------
+
+USE [BaseballLeague]
+GO
+/****** Object:  StoredProcedure [dbo].[GetPositionID]    Script Date: 11/19/2015 9:35:10 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE procedure [dbo].[GetPositionID](
+	@PositionName nvarchar(50)
+	)
+	as
+begin
+	select PositionID
+	from Positions
+	where PositionName = @PositionName
+end
+GO
+
+------------------------------------------------
+
+USE [BaseballLeague]
+GO
+/****** Object:  StoredProcedure [dbo].[AddNewPlayer]    Script Date: 11/19/2015 9:36:46 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE procedure [dbo].[AddNewPlayer](
+	@PositionID int,
+	@TeamID int,
+	@FirstName nvarchar(50),
+	@LastName nvarchar(50),
+	@JerseyNumber int,
+	@YearsPlayed int,
+	@BattingAverage decimal(3,3),
+	@EarnedRunAvg decimal(5,2),
+	@PlayerID int output
+	)
+	as
+begin
+	insert into Players (PositionID, TeamID, FirstName, LastName, JerseyNumber, YearsPlayed, BattingAvg, EarnedRunAvg)
+	values (@PositionID, @TeamID, @FirstName, @LastName, @JerseyNumber, @YearsPlayed, @BattingAverage, @EarnedRunAvg)
+
+	set @PlayerID = SCOPE_IDENTITY();
+end
+GO
+
+------------------------------------------
+
+USE [BaseballLeague]
+GO
+/****** Object:  StoredProcedure [dbo].[CreateTeam]    Script Date: 11/19/2015 9:37:10 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[CreateTeam] 
+
+	@TeamName nvarchar(50), 
+	@ManagerName nvarchar(100),
+	@LeagueID int,
+	@TeamID int output 
+AS
+BEGIN
+	
+	SET NOCOUNT ON;
+
+	insert into Teams (LeagueID, TeamName, ManagerName)
+	values(@LeagueID, @TeamName, @ManagerName)
+	set @TeamID = Scope_Identity()
 END
 GO
