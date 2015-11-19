@@ -176,7 +176,7 @@ GO
 
 USE [BaseballLeague]
 GO
-/****** Object:  StoredProcedure [dbo].[NewJerseyNumber]    Script Date: 11/18/2015 4:07:59 PM ******/
+
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -198,7 +198,7 @@ GO
 
 USE [BaseballLeague]
 GO
-/****** Object:  StoredProcedure [dbo].[TradePlayer]    Script Date: 11/18/2015 4:08:45 PM ******/
+
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -215,4 +215,62 @@ begin
 		JerseyNumber = @NewJerseyNumber
 	where PlayerID = @PlayerID
 end
+GO
+
+----------------------------------------
+
+USE [BaseballLeague]
+GO
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE procedure [dbo].[RetrievePlayer]
+	@PlayerID int
+AS
+BEGIN
+
+SET NOCOUNT ON;
+
+select pl.PlayerID,
+		pl.FirstName,
+		pl.LastName,
+		pl.JerseyNumber,
+		pl.YearsPlayed,
+		pl.BattingAvg,
+		pl.EarnedRunAvg,
+		pl.TeamID,
+		te.TeamName,
+		pl.PositionID,
+		po.PositionName 
+	from players pl
+		inner join teams te
+			on pl.TeamID = te.TeamID
+		inner join Positions po
+			on pl.PositionID = po.PositionID
+	where pl.PlayerID = @PlayerID
+END
+GO
+
+--------------------------------------
+
+USE [BaseballLeague]
+GO
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE procedure [dbo].[RetrieveTeam] (
+	@TeamID int
+)
+AS
+BEGIN
+	select *
+	from Teams
+	where TeamID = @TeamID
+END
 GO

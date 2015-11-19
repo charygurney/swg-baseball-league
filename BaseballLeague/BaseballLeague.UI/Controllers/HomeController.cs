@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using BaseballLeague.BLL;
 using BaseballLeague.Models;
+using BaseballLeague.UI.Models;
 
 namespace BaseballLeague.UI.Controllers
 {
@@ -50,6 +51,12 @@ namespace BaseballLeague.UI.Controllers
             _ops.DeleteAPlayerFromRepo(id);
 
             return RedirectToAction("GetAllTeams");
+        }
+
+        public ActionResult TradeAPlayer(int id)
+        {
+            PlayerToTradeVM playerToTradeVM = new PlayerToTradeVM();
+            playerToTradeVM.player = new Player();
         }
     }
 }

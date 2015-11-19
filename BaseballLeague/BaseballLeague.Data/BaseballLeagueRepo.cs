@@ -50,8 +50,23 @@ namespace BaseballLeague.Data
         // Create a player
 
         // Retrieve a team
+        public Team RetrieveATeam(int id)
+        {
+            var p = new DynamicParameters();
+            p.Add("TeamID", id);
+
+            return _cn.Query<Team>("RetrieveTeam", p, commandType: CommandType.StoredProcedure).FirstOrDefault();
+        }
+
 
         // Retrieve a player
+        public Player RetrieveAPlayer(int id)
+        {
+            var p = new DynamicParameters();
+            p.Add("PlayerID", id);
+
+            return _cn.Query<Player>("RetrievePlayer", p, commandType: CommandType.StoredProcedure).FirstOrDefault();
+        }
 
         // Update a team
 
