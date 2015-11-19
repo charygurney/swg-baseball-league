@@ -39,7 +39,7 @@ namespace BaseballLeague.UI.Controllers
 
             _ops.GetTeamsFromRepo();
             _team.Players = _ops.GetPlayersOnTeamFromRepo(id);
-            _team.TeamName = _team.Players[0].TeamName;
+            _team.TeamName = _ops.RetrieveATeamFromRepo(id).TeamName;
 
             return View(_team);
         }
@@ -70,6 +70,21 @@ namespace BaseballLeague.UI.Controllers
             _ops = new BaseballLeagueOps();
 
             _ops.TradeAPlayerFromRepo(playerToTradeVM.player.PlayerID, playerToTradeVM.team.TeamID);
+
+            return RedirectToAction("GetAllTeams");
+        }
+
+        public ActionResult CreateATeam()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CreateATeamPost(Team team)
+        {
+            _ops = new BaseballLeagueOps();
+
+            _ops.CreateATeamFromRepo(team.TeamName, team.ManagerName);
 
             return RedirectToAction("GetAllTeams");
         }

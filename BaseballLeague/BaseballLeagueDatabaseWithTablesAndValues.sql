@@ -404,3 +404,13 @@ BEGIN
 	set @TeamID = Scope_Identity()
 END
 GO
+
+--GET ALL POSITIONS
+
+create procedure [dbo].[GetAllPositions]
+as
+begin
+	select positionname
+	from positions
+end
+go
