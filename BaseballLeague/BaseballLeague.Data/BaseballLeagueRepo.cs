@@ -92,7 +92,23 @@ namespace BaseballLeague.Data
             p.Add("TeamID", newTeamID);
 
             return _cn.Query<int>("NewJerseyNumber", p, commandType: CommandType.StoredProcedure).FirstOrDefault();
-        } 
+        }
+
+        public void CreateNewPlayer(Player newPlayer, int positionID, int teamID, int jerseyNumber)
+        {
+            var p = new DynamicParameters();
+            p.Add("PositionID", positionID);
+            p.Add("TeamID", teamID);
+            p.Add("FirstName", newPlayer.FirstName);
+            p.Add("LastName", newPlayer.LastName);
+            p.Add("JerseyNumber", jerseyNumber);
+            p.Add("YearsPlayed", newPlayer.YearsPlayed);
+            p.Add("BattingAverage", newPlayer.BattingAverage);
+            p.Add("EarnedRunAvg", newPlayer.EarnedRunAvg);
+            p.Add("PlayerID", dbType: DbType.Int32, direction: ParameterDirection.Output);
+
+            _cn.Execute("AddNewPlayer", p, commandType: CommandType.StoredProcedure);
+        }
 
     }
 
