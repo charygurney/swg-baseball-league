@@ -3,8 +3,13 @@
 @{
     ViewBag.Title = "GetAllTeams";
 }
-
+<br/>
 <p>@Html.ActionLink("Return to Home", "Index", "Home")</p>
+@Html.ActionLink("Create A Team", "CreateATeam", "Home", null, new {@class=" btn btn-primary"})
+
+@*{
+    <button type="submit" class="btn btn-primary">Add a New team</button>
+}*@
 
 <h2>@Model.LeagueName Teams</h2>
 
