@@ -103,7 +103,7 @@ namespace BaseballLeague.Data
             p.Add("LastName", newPlayer.LastName);
             p.Add("JerseyNumber", jerseyNumber);
             p.Add("YearsPlayed", newPlayer.YearsPlayed);
-            p.Add("BattingAverage", newPlayer.BattingAverage);
+            p.Add("BattingAvg", newPlayer.BattingAvg);
             p.Add("EarnedRunAvg", newPlayer.EarnedRunAvg);
             p.Add("PlayerID", dbType: DbType.Int32, direction: ParameterDirection.Output);
 
