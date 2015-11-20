@@ -6,7 +6,8 @@
 <p>@Html.ActionLink("Return to Teams", "GetAllTeams", "Home")</p>
 
 <h2>@Model.TeamName</h2>
-<button type="submit" class="btn btn-primary">Add Player to Team</button>
+@Html.ActionLink("Add New Player", "CreateNewPlayer", "Home", null, new {@class="btn btn-primary"})
+
 
 <div class="row">
     <div class="col-md-12">

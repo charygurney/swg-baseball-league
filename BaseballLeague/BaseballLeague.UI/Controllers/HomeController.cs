@@ -88,5 +88,20 @@ namespace BaseballLeague.UI.Controllers
 
             return RedirectToAction("GetAllTeams");
         }
+
+        public ActionResult CreateNewPlayer()
+        {
+            _ops = new BaseballLeagueOps();
+            PlayerToCreateVM playerToCreateVM = new PlayerToCreateVM();
+            Player newPlayer = new Player();
+            Team newTeam = new Team();
+            playerToCreateVM.player = _ops.CreateNewPlayerFromRepo(newPlayer, newTeam);
+            playerToCreateVM.CreateTeamsList(_ops.GetTeamsFromRepo());
+            playerToCreateVM.CreatePositionsList(_ops.GetPositionsFromRepo());
+
+            return View(playerToCreateVM);
+
+            }
+
     }
 }

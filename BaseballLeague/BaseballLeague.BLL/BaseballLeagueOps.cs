@@ -56,14 +56,18 @@ namespace BaseballLeague.BLL
              _bblrepo.CreateATeam(teamName, managerName, 1);
         }
 
-        public void CreateNewPlayerFromRepo(Player newPlayer, Team newTeam)
+        public Player CreateNewPlayerFromRepo(Player newPlayer, Team newTeam)
         {
             int newTeamID = _bblrepo.GetTeamID(newTeam.TeamName);
             int newJerseyNumber = _bblrepo.JerseyNumbersOnATeam(newPlayer.PlayerID, newTeamID);
             int newPositionId = _bblrepo.GetPositionID(newPlayer.PositionName);
 
-            _bblrepo.CreateNewPlayer(newPlayer, newPositionId, newTeamID, newJerseyNumber);
+           return _bblrepo.CreateNewPlayer(newPlayer, newPositionId, newTeamID, newJerseyNumber);
         }
 
+        public List<string> GetPositionsFromRepo()
+        {
+            return _bblrepo.GetPositionsList();
+        } 
     }
 }

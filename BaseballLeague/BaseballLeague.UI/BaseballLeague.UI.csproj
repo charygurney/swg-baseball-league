@@ -130,6 +130,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\PlayerToCreateVM.cs" />
     <Compile Include="Models\PlayerToTradeVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -144,6 +145,7 @@
     <Content Include="Views\Home\ViewTeam.cshtml" />
     <Content Include="Views\Home\TradeAPlayer.cshtml" />
     <Content Include="Views\Home\CreateATeam.cshtml" />
+    <Content Include="Views\Home\CreateNewPlayer.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

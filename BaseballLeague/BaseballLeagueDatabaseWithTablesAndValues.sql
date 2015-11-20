@@ -376,14 +376,14 @@ CREATE procedure [dbo].[AddNewPlayer](
 	@LastName nvarchar(50),
 	@JerseyNumber int,
 	@YearsPlayed int,
-	@BattingAverage decimal(3,3),
+	@BattingAvg decimal(3,3),
 	@EarnedRunAvg decimal(5,2),
 	@PlayerID int output
 	)
 	as
 begin
 	insert into Players (PositionID, TeamID, FirstName, LastName, JerseyNumber, YearsPlayed, BattingAvg, EarnedRunAvg)
-	values (@PositionID, @TeamID, @FirstName, @LastName, @JerseyNumber, @YearsPlayed, @BattingAverage, @EarnedRunAvg)
+	values (@PositionID, @TeamID, @FirstName, @LastName, @JerseyNumber, @YearsPlayed, @BattingAvg, @EarnedRunAvg)
 
 	set @PlayerID = SCOPE_IDENTITY();
 end

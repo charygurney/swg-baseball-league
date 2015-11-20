@@ -1,0 +1,38 @@
+﻿@model BaseballLeague.UI.Models.PlayerToCreateVM
+
+@{
+    ViewBag.Title = "CreateNewPlayer";
+}
+
+<div class="row">
+    <div class="col-xs-6">
+        <p>@Html.ActionLink("Back To Home", "Index", "Home")</p>
+
+<h2>Create New Player</h2>
+@using (Html.BeginForm("CreateNewPlayerPost", "Home", FormMethod.Post, new {id = "createANewPlayer"}))
+{
+    @Html.ValidationSummary()
+    <div class="form-group">
+        <p>First Name: @Html.TextBoxFor(p => p.player.FirstName, new {@class = "form-control"})</p>
+    </div>
+    <div class="form-group">
+        <p>Last Name: @Html.TextBoxFor(p => p.player.LastName, new {@class = "form-control"})</p>
+    </div>
+    <div class="form-group">
+        <p>Years Played: @Html.TextBoxFor(p => p.player.YearsPlayed, new {@class = "form-control"})</p>
+    </div>
+    <div class="form-group">
+        <p>Batting Avg: @Html.TextBoxFor(p => p.player.BattingAvg, new {@class = "form-control"})</p>
+    </div>
+    <div class="form-group">
+        <p>ERA: @Html.TextBoxFor(p => p.player.EarnedRunAvg, new {@class = "form-control"})</p>
+    </div>
+    <p>
+        Team: @Html.DropDownList("team.TeamID", Model.teams)
+    </p>
+    <p>
+        Position: @Html.DropDownList("position", Model.positions)
+    </p>
+}
+</div>
+</div>

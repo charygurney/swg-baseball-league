@@ -94,7 +94,7 @@ namespace BaseballLeague.Data
             return _cn.Query<int>("NewJerseyNumber", p, commandType: CommandType.StoredProcedure).FirstOrDefault();
         }
 
-        public void CreateNewPlayer(Player newPlayer, int positionID, int teamID, int jerseyNumber)
+        public Player CreateNewPlayer(Player newPlayer, int positionID, int teamID, int jerseyNumber)
         {
             var p = new DynamicParameters();
             p.Add("PositionID", positionID);
@@ -108,6 +108,7 @@ namespace BaseballLeague.Data
             p.Add("PlayerID", dbType: DbType.Int32, direction: ParameterDirection.Output);
 
             _cn.Execute("AddNewPlayer", p, commandType: CommandType.StoredProcedure);
+            return RetrieveAPlayer(newPlayer.PlayerID);
         }
 
         public int GetTeamID(string teamName)
@@ -125,6 +126,11 @@ namespace BaseballLeague.Data
 
             return _cn.Query<int>("GetPositionID", p, commandType: CommandType.StoredProcedure).FirstOrDefault();
         }
+
+        public List<string> GetPositionsList()
+        {
+            return _cn.Query<string>("Select * From Positions").ToList();
+        } 
 
 
     }
