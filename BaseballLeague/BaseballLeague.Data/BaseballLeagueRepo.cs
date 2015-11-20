@@ -129,7 +129,7 @@ namespace BaseballLeague.Data
 
         public List<string> GetPositionsList()
         {
-            return _cn.Query<string>("Select * From Positions").ToList();
+            return _cn.Query<string>("GetAllPositions", commandType: CommandType.StoredProcedure).ToList();
         } 
 
 

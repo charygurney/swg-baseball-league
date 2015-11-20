@@ -58,7 +58,7 @@ namespace BaseballLeague.BLL
 
         public Player CreateNewPlayerFromRepo(Player newPlayer, Team newTeam)
         {
-            int newTeamID = _bblrepo.GetTeamID(newTeam.TeamName);
+            int newTeamID = newTeam.TeamID;
             int newJerseyNumber = _bblrepo.JerseyNumbersOnATeam(newPlayer.PlayerID, newTeamID);
             int newPositionId = _bblrepo.GetPositionID(newPlayer.PositionName);
 

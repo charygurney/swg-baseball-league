@@ -95,13 +95,22 @@ namespace BaseballLeague.UI.Controllers
             PlayerToCreateVM playerToCreateVM = new PlayerToCreateVM();
             Player newPlayer = new Player();
             Team newTeam = new Team();
-            playerToCreateVM.player = _ops.CreateNewPlayerFromRepo(newPlayer, newTeam);
-            playerToCreateVM.CreateTeamsList(_ops.GetTeamsFromRepo());
+           playerToCreateVM.CreateTeamsList(_ops.GetTeamsFromRepo());
             playerToCreateVM.CreatePositionsList(_ops.GetPositionsFromRepo());
 
             return View(playerToCreateVM);
 
             }
+
+        [HttpPost]
+        public ActionResult CreateNewPlayerPost(PlayerToCreateVM playerToCreateVm)
+        {
+            _ops = new BaseballLeagueOps();
+
+            _ops.CreateNewPlayerFromRepo(playerToCreateVm.player, playerToCreateVm.team);
+
+            return RedirectToAction("ViewTeam/" + playerToCreateVm.team.TeamID);
+        }
 
     }
 }

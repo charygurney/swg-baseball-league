@@ -10,7 +10,8 @@ namespace BaseballLeague.UI.Models
     public class PlayerToCreateVM
     {
         public Player player { get; set; }
-       // public Team team { get; set; }
+        public string position { get; set; }
+        public Team team { get; set; }
         public List<SelectListItem> teams { get; set; }
         public List<SelectListItem> positions { get; set; }
 
@@ -43,8 +44,8 @@ namespace BaseballLeague.UI.Models
             {
                 SelectListItem newItem = new SelectListItem();
 
-                newItem.Text = player.PositionName;
-                newItem.Value = player.PositionName;
+                newItem.Text = position;
+                newItem.Value = position;
 
                 positions.Add(newItem);
             }

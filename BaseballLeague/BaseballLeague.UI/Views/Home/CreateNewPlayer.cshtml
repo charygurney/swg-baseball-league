@@ -12,6 +12,8 @@
 @using (Html.BeginForm("CreateNewPlayerPost", "Home", FormMethod.Post, new {id = "createANewPlayer"}))
 {
     @Html.ValidationSummary()
+    
+    
     <div class="form-group">
         <p>First Name: @Html.TextBoxFor(p => p.player.FirstName, new {@class = "form-control"})</p>
     </div>
@@ -28,11 +30,13 @@
         <p>ERA: @Html.TextBoxFor(p => p.player.EarnedRunAvg, new {@class = "form-control"})</p>
     </div>
     <p>
-        Team: @Html.DropDownList("team.TeamID", Model.teams)
+        Team: @Html.DropDownListFor(t => t.team.TeamID, Model.teams)
     </p>
     <p>
-        Position: @Html.DropDownList("position", Model.positions)
+        Position: @Html.DropDownListFor(p => p.player.PositionName, Model.positions)
     </p>
+
+    <button type="submit" class="btn btn-primary">Add Player</button>
 }
 </div>
 </div>
