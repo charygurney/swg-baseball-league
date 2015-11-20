@@ -191,17 +191,20 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-
 CREATE procedure [dbo].[NewJerseyNumber](
 	@PlayerID int,
 	@TeamID int
 	)
 	as
 begin
-	select max(Players.JerseyNumber) + 1 
-	from Teams inner join Players 
+	select 
+		case when max(Players.JerseyNumber) is null
+	then 1
+		else max(Players.JerseyNumber) + 1
+	end 
+from Teams inner join Players 
 		on Teams.TeamID = Players.TeamID 
-	where Teams.TeamID = @TeamID
+where Teams.TeamID = @TeamID
 end
 GO
 

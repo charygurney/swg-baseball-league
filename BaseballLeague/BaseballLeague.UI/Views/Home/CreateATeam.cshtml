@@ -1,0 +1,18 @@
+﻿@model BaseballLeague.Models.Team
+@{
+    ViewBag.Title = "CreateATeam";
+}
+
+<p>@Html.ActionLink("Back To Home", "Index", "Home")</p>
+
+<h2>Create A New Team</h2>
+
+@using (Html.BeginForm("CreateATeamPost", "Home", FormMethod.Post))
+{
+    <p>Team Name: @Html.TextBoxFor(t => t.TeamName)</p>
+    <br/>
+    <p>Manager Name: @Html.TextBoxFor(t => t.ManagerName)</p>
+    <button type="submit" class="btn btn-primary">Add New Team</button>
+
+}
+

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
@@ -50,31 +51,19 @@ namespace BaseballLeague.BLL
 
         }
 
-        //public int TradeAPlayerFromRepo(int id, int newTeamID)
-        //{
-            
-        //    int newJerseyNumber = _bblrepo.JerseyNumbersOnATeam(id, newTeamID);
-        //    List<Player> players = _bblrepo.GetAllPlayersOnATeam(newTeamID);
-        //    Response response = new Response();
-        //    foreach (var player in players)
-        //    {
-        //        if (newJerseyNumber == player.JerseyNumber)
-        //        {
-        //            response.Success = false;
-        //            response.Message = "This jersey number is already assighned to a player!";
-                    
-        //        }
-        //        else
-        //        {
-        //            response.Success = true;
-        //            return newJerseyNumber;
-        //        }
-        //    }
+        public void CreateATeamFromRepo(string teamName, string managerName)
+        {
+             _bblrepo.CreateATeam(teamName, managerName, 1);
+        }
 
-        //    _bblrepo.TradeAPlayer(id, newTeamID, newJerseyNumber);
+        public void CreateNewPlayerFromRepo(Player newPlayer, Team newTeam)
+        {
+            int newTeamID = _bblrepo.GetTeamID(newTeam.TeamName);
+            int newJerseyNumber = _bblrepo.JerseyNumbersOnATeam(newPlayer.PlayerID, newTeamID);
+            int newPositionId = _bblrepo.GetPositionID(newPlayer.PositionName);
 
-            
-        //}
+            _bblrepo.CreateNewPlayer(newPlayer, newPositionId, newTeamID, newJerseyNumber);
+        }
 
     }
 }
