@@ -1,11 +1,21 @@
 use master
 go
 
+if db_id('dms') is not null
+BEGIN
+	ALTER DATABASE BaseballLeague SET SINGLE_USER WITH ROLLBACK IMMEDIATE 
+END
+GO
+
 drop database BaseballLeague
 go
 
+
 create database BaseballLeague
 go
+
+ALTER DATABASE BaseballLeague SET MULTI_USER
+GO
 
 use BaseballLeague
 go
@@ -143,6 +153,7 @@ as
 begin
 	select *
 	from Teams
+	order by TeamName
 end
 GO
 -----------------------
