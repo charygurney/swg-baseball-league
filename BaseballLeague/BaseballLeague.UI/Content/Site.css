@@ -17,14 +17,14 @@ textarea {
     max-width: 280px;
 }
 
-#bb {
+/*#bb {
    
     background-repeat: no-repeat;
     position: fixed;
     top: -50%;
     left: -50%;
-    width: 400%;
-    height: 400%;
+    width: 200%;
+    height: 200%;
 }
 
 #bb img {
@@ -36,7 +36,19 @@ textarea {
     margin: auto;
     min-width: 50%;
     min-height: 50%;
-}
+}*/
 
+/*#bb {
+    background-image: url('/content/images/baseball.png');
+    background-repeat: no-repeat;
+    position: relative;
+}*/
+
+#img-responsive {
+    background-image: url('/content/images/baseball.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    position: relative;
+}
 
 
