@@ -8,35 +8,41 @@
     <div class="col-xs-6">
         <p>@Html.ActionLink("Back To Home", "Index", "Home")</p>
 
-<h2>Create New Player</h2>
-@using (Html.BeginForm("CreateNewPlayerPost", "Home", FormMethod.Post, new {id = "createANewPlayer"}))
-{
-    @Html.ValidationSummary()
-    
-    
-    <div class="form-group">
-        <p>First Name: @Html.TextBoxFor(p => p.player.FirstName, new {@class = "form-control"})</p>
-    </div>
-    <div class="form-group">
-        <p>Last Name: @Html.TextBoxFor(p => p.player.LastName, new {@class = "form-control"})</p>
-    </div>
-    <div class="form-group">
-        <p>Years Played: @Html.TextBoxFor(p => p.player.YearsPlayed, new {@class = "form-control"})</p>
-    </div>
-    <div class="form-group">
-        <p>Batting Avg: @Html.TextBoxFor(p => p.player.BattingAvg, new {@class = "form-control"})</p>
-    </div>
-    <div class="form-group">
-        <p>ERA: @Html.TextBoxFor(p => p.player.EarnedRunAvg, new {@class = "form-control"})</p>
-    </div>
-    <p>
-        Team: @Html.DropDownListFor(t => t.team.TeamID, Model.teams)
-    </p>
-    <p>
-        Position: @Html.DropDownListFor(p => p.player.PositionName, Model.positions)
-    </p>
+        <h2>Create New Player</h2>
+        @using (Html.BeginForm("CreateNewPlayerPost", "Home", FormMethod.Post, new {id = "createANewPlayer"}))
+        {
+            @Html.ValidationSummary()
 
-    <button type="submit" class="btn btn-primary">Add Player</button>
+
+            <div class="form-group">
+                <p>First Name: @Html.TextBoxFor(p => p.player.FirstName, new {@class = "form-control"})</p>
+            </div>
+            <div class="form-group">
+                <p>Last Name: @Html.TextBoxFor(p => p.player.LastName, new {@class = "form-control"})</p>
+            </div>
+            <div class="form-group">
+                <p>Years Played: @Html.TextBoxFor(p => p.player.YearsPlayed, new {@class = "form-control"})</p>
+            </div>
+            <div class="form-group">
+                <p>Batting Avg: @Html.TextBoxFor(p => p.player.BattingAvg, new {@class = "form-control"})</p>
+            </div>
+            <div class="form-group">
+                <p>ERA: @Html.TextBoxFor(p => p.player.EarnedRunAvg, new {@class = "form-control"})</p>
+            </div>
+            <p>
+                Team: @Html.DropDownListFor(t => t.team.TeamID, Model.teams)
+            </p>
+            <p>
+                Position: @Html.DropDownListFor(p => p.player.PositionName, Model.positions)
+            </p>
+
+            <button type="submit" class="btn btn-primary">Add Player</button>
+        }
+    </div>
+</div>
+
+
+@section Scripts{
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 }
-</div>
-</div>
