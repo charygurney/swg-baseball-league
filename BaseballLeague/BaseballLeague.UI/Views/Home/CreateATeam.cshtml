@@ -2,17 +2,28 @@
 @{
     ViewBag.Title = "CreateATeam";
 }
+<div class="row">
+    <div class="col-xs-6">
 
-<p>@Html.ActionLink("Back To Home", "Index", "Home")</p>
+        <p>@Html.ActionLink("Back To Home", "Index", "Home")</p>
 
-<h2>Create A New Team</h2>
+        <h2>Create A New Team</h2>
+        @using (Html.BeginForm("CreateATeamPost", "Home", FormMethod.Post, new {id="createANewTeam"}))
+        {
+            @Html.ValidationSummary()
+            <div class="form-group">
+                <p>Team Name: @Html.TextBoxFor(t => t.TeamName, new {@class="form-control"})</p>
+            </div>
+            <br/>
+            <div class="form-group">
+                <p>Manager Name: @Html.TextBoxFor(t => t.ManagerName, new {@class="form-control"})</p>
+                </div>
+            <button type="submit" class="btn btn-primary">Add New Team</button>
 
-@using (Html.BeginForm("CreateATeamPost", "Home", FormMethod.Post))
-{
-    <p>Team Name: @Html.TextBoxFor(t => t.TeamName)</p>
-    <br/>
-    <p>Manager Name: @Html.TextBoxFor(t => t.ManagerName)</p>
-    <button type="submit" class="btn btn-primary">Add New Team</button>
+        }
+    </div>
+</div>
 
+@section Scripts{
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 }
-
