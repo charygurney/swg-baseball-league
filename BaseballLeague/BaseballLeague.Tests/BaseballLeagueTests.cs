@@ -58,10 +58,60 @@ namespace BaseballLeague.Tests
             Assert.AreEqual(expected, newTeamID);
         }
 
+        [Test]
+        public void GetTeam_RetrieveLastTeam()
+        {
+            int id = 0;
+            Team team = null;
+            using (SqlConnection cn = new SqlConnection(Settings.ConnectionString))
+            {
+                cn.Open();
+
+                id = RetrieveLastTeam(cn);
+
+                BaseballLeagueRepo bblRepo = new BaseballLeagueRepo();
+                team = bblRepo.RetrieveATeam(id);
+            }
+
+            Assert.NotNull(team);
+
+        }
+
+        [Test]
+        public void GetPlayer_RetrieveLastPlayer()
+        {
+            int id = 0;
+            Player player = null;
+            using (SqlConnection cn = new SqlConnection(Settings.ConnectionString))
+            {
+                cn.Open();
+
+                id = RetrieveLastPlayer(cn);
+
+                BaseballLeagueRepo bblRepo = new BaseballLeagueRepo();
+                player = bblRepo.RetrieveAPlayer(id);
+            }
+
+            Assert.NotNull(player);
+
+        }
+
+
+
         private int RetrieveLastTeam(SqlConnection cn)
         {
             SqlCommand  cmd = new SqlCommand();
             cmd.CommandText = "Select Max(TeamID) From Teams";
+            cmd.Connection = cn;
+
+            int id = int.Parse(cmd.ExecuteScalar().ToString());
+            return id;
+        }
+
+        private int RetrieveLastPlayer(SqlConnection cn)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = "Select Max(PlayerID) From Players";
             cmd.Connection = cn;
 
             int id = int.Parse(cmd.ExecuteScalar().ToString());
